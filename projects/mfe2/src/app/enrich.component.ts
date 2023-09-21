@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MY_TEST_INJECTION_TOKEN } from './test.di';
 
 @Component({
     standalone: true,
@@ -11,7 +12,9 @@ import { Component, OnInit } from '@angular/core';
     `
 })
 export class EnrichComponent implements OnInit {
-    constructor() { }
+    constructor(@Inject(MY_TEST_INJECTION_TOKEN) private myTestInjectionToken: string) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        console.log('this.myTestInjectionToken: ', this.myTestInjectionToken);
+    }
 }
